@@ -44,13 +44,13 @@ const StartInterview = () => {
         throw new Error("Failed to start interview");
       }
 
-      const data = await response.json();
+      // Backend returns audio file directly, create blob URL
+      const audioBlob = await response.blob();
+      const audioUrl = URL.createObjectURL(audioBlob);
       
       // Play the bot's first audio
-      if (data.audio_url) {
-        setCurrentBotAudio(data.audio_url);
-        addMessage("bot", data.message || "Welcome to your interview!");
-      }
+      setCurrentBotAudio(audioUrl);
+      addMessage("bot", "Tell me about yourself.");
       
       setIsInterviewStarted(true);
       toast({
@@ -131,15 +131,26 @@ const StartInterview = () => {
         throw new Error("Failed to submit answer");
       }
 
-      const data = await response.json();
+      // Check if response is JSON or binary audio
+      const contentType = response.headers.get("content-type");
       
-      // Add user message (transcription if available)
-      addMessage("user", data.transcription || "Audio/Video response submitted");
-      
-      // Play next bot audio if available
-      if (data.audio_url) {
-        setCurrentBotAudio(data.audio_url);
-        addMessage("bot", data.message || "Next question...");
+      if (contentType && contentType.includes("application/json")) {
+        // Handle JSON response
+        const data = await response.json();
+        addMessage("user", data.transcription || "Audio/Video response submitted");
+        
+        if (data.audio_url) {
+          setCurrentBotAudio(data.audio_url);
+          addMessage("bot", data.message || "Next question...");
+        }
+      } else {
+        // Handle binary audio response
+        const audioBlob = await response.blob();
+        const audioUrl = URL.createObjectURL(audioBlob);
+        
+        addMessage("user", "Audio/Video response submitted");
+        setCurrentBotAudio(audioUrl);
+        addMessage("bot", "Next question...");
       }
 
       toast({
