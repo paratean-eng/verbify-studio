@@ -2,6 +2,7 @@ import { Card } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
+import { BarChart3, CheckCircle, Lightbulb, Target, BookOpen, Presentation } from "lucide-react";
 
 const Results = () => {
   const navigate = useNavigate();
@@ -45,7 +46,7 @@ const Results = () => {
             {/* Overall Score Card */}
             <div className="lg:col-span-1">
               <Card className="p-8 text-center bg-card/50 backdrop-blur-sm border-border/50 shadow-card">
-                <div className="text-6xl mb-4">📊</div>
+                <BarChart3 className="w-16 h-16 text-primary mx-auto mb-4" />
                 <h2 className="text-2xl font-semibold mb-4">Overall Score</h2>
                 <div className="text-6xl font-bold text-primary mb-4">{overallScore}%</div>
                 <div className="text-muted-foreground mb-6">
@@ -91,9 +92,11 @@ const Results = () => {
                       }`}
                     >
                       <div className="flex items-center space-x-2 mb-2">
-                        <span className="text-lg">
-                          {item.type === "strength" ? "✅" : "💡"}
-                        </span>
+                        {item.type === "strength" ? (
+                          <CheckCircle className="w-5 h-5 text-green-500" />
+                        ) : (
+                          <Lightbulb className="w-5 h-5 text-yellow-500" />
+                        )}
                         <h4 className="font-semibold">{item.title}</h4>
                       </div>
                       <p className="text-sm text-muted-foreground">{item.description}</p>
@@ -106,7 +109,7 @@ const Results = () => {
                 <h3 className="text-xl font-semibold mb-4">Next Steps</h3>
                 <div className="space-y-3">
                   <div className="flex items-start space-x-3">
-                    <span className="text-lg mt-1">🎯</span>
+                    <Target className="w-6 h-6 text-primary mt-1" />
                     <div>
                       <h4 className="font-medium">Practice Technical Questions</h4>
                       <p className="text-sm text-muted-foreground">
@@ -115,7 +118,7 @@ const Results = () => {
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <span className="text-lg mt-1">📚</span>
+                    <BookOpen className="w-6 h-6 text-primary mt-1" />
                     <div>
                       <h4 className="font-medium">Study Behavioral Techniques</h4>
                       <p className="text-sm text-muted-foreground">
@@ -124,7 +127,7 @@ const Results = () => {
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <span className="text-lg mt-1">🎪</span>
+                    <Presentation className="w-6 h-6 text-primary mt-1" />
                     <div>
                       <h4 className="font-medium">Mock Interviews</h4>
                       <p className="text-sm text-muted-foreground">

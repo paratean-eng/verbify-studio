@@ -2,6 +2,7 @@ import { useState, useRef, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { toast } from "@/hooks/use-toast";
+import { Mic, Bot, Circle, Square } from "lucide-react";
 
 interface Message {
   id: string;
@@ -164,7 +165,7 @@ const StartInterview = () => {
 
           {!isInterviewStarted ? (
             <Card className="p-12 text-center bg-card/50 backdrop-blur-sm border-border/50 shadow-card">
-              <div className="text-6xl mb-6">🎤</div>
+              <Mic className="w-16 h-16 text-primary mx-auto mb-6" />
               <h2 className="text-2xl font-semibold mb-4">Ready to Start?</h2>
               <p className="text-muted-foreground mb-8 max-w-md mx-auto">
                 Click the button below to begin your interview. Make sure your microphone and camera are working properly.
@@ -182,7 +183,7 @@ const StartInterview = () => {
               {currentBotAudio && (
                 <Card className="p-6 bg-card/50 backdrop-blur-sm border-border/50">
                   <div className="flex items-center space-x-4">
-                    <div className="text-2xl">🤖</div>
+                    <Bot className="w-8 h-8 text-primary" />
                     <div className="flex-1">
                       <h3 className="font-semibold mb-2">AI Interviewer</h3>
                       <audio
@@ -200,8 +201,12 @@ const StartInterview = () => {
               {/* Recording Controls */}
               <Card className="p-8 text-center bg-card/50 backdrop-blur-sm border-border/50">
                 <div className="space-y-6">
-                  <div className="text-4xl">
-                    {isRecording ? "🔴" : "🎤"}
+                  <div className="w-16 h-16 mx-auto flex items-center justify-center">
+                    {isRecording ? (
+                      <Circle className="w-16 h-16 text-red-500 fill-current animate-pulse" />
+                    ) : (
+                      <Mic className="w-16 h-16 text-primary" />
+                    )}
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold mb-2">
@@ -222,7 +227,17 @@ const StartInterview = () => {
                         : "bg-gradient-primary hover:opacity-90 text-primary-foreground shadow-primary hover:shadow-lg"
                     }`}
                   >
-                    {isRecording ? "Stop Recording" : "Start Recording"}
+                    {isRecording ? (
+                      <>
+                        <Square className="w-5 h-5 mr-2" />
+                        Stop Recording
+                      </>
+                    ) : (
+                      <>
+                        <Mic className="w-5 h-5 mr-2" />
+                        Start Recording
+                      </>
+                    )}
                   </Button>
                 </div>
               </Card>

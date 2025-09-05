@@ -1,11 +1,12 @@
 import { NavLink } from "react-router-dom";
 import { cn } from "@/lib/utils";
+import { Home, Video, BarChart3 } from "lucide-react";
 
 const Navigation = () => {
   const navItems = [
-    { path: "/", label: "Home", icon: "🏠" },
-    { path: "/start-interview", label: "Start Interview", icon: "▶️" },
-    { path: "/results", label: "Results", icon: "📊" },
+    { path: "/", label: "Home", Icon: Home },
+    { path: "/start-interview", label: "Start Interview", Icon: Video },
+    { path: "/results", label: "Results", Icon: BarChart3 },
   ];
 
   return (
@@ -33,7 +34,7 @@ const Navigation = () => {
                 )
               }
             >
-              <span className="text-lg">{item.icon}</span>
+              <item.Icon className="w-5 h-5" />
               <span className="font-medium">{item.label}</span>
             </NavLink>
           ))}

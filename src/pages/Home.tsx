@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useNavigate } from "react-router-dom";
+import { Bot, Video, BarChart3, Play } from "lucide-react";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -21,7 +22,7 @@ const Home = () => {
             onClick={() => navigate("/start-interview")}
             className="bg-gradient-primary hover:opacity-90 text-primary-foreground px-8 py-6 text-lg font-semibold rounded-xl shadow-primary hover:shadow-lg transition-all duration-300 hover:scale-105"
           >
-            <span className="mr-2">▶️</span>
+            <Play className="w-5 h-5 mr-2" />
             Start Your Interview
           </Button>
         </div>
@@ -29,7 +30,7 @@ const Home = () => {
         {/* Features Grid */}
         <div className="grid md:grid-cols-3 gap-8">
           <Card className="p-8 bg-card/50 backdrop-blur-sm border-border/50 hover:bg-card/70 transition-all duration-300 hover:scale-105 shadow-card">
-            <div className="text-4xl mb-4">🤖</div>
+            <Bot className="w-12 h-12 text-primary mb-4" />
             <h3 className="text-xl font-semibold mb-3">AI-Driven Analysis</h3>
             <p className="text-muted-foreground">
               Advanced AI analyzes your responses, body language, and communication skills in real-time.
@@ -37,7 +38,7 @@ const Home = () => {
           </Card>
 
           <Card className="p-8 bg-card/50 backdrop-blur-sm border-border/50 hover:bg-card/70 transition-all duration-300 hover:scale-105 shadow-card">
-            <div className="text-4xl mb-4">📹</div>
+            <Video className="w-12 h-12 text-primary mb-4" />
             <h3 className="text-xl font-semibold mb-3">Video & Audio Recording</h3>
             <p className="text-muted-foreground">
               High-quality recording capabilities to capture every detail of your interview performance.
@@ -45,7 +46,7 @@ const Home = () => {
           </Card>
 
           <Card className="p-8 bg-card/50 backdrop-blur-sm border-border/50 hover:bg-card/70 transition-all duration-300 hover:scale-105 shadow-card">
-            <div className="text-4xl mb-4">📊</div>
+            <BarChart3 className="w-12 h-12 text-primary mb-4" />
             <h3 className="text-xl font-semibold mb-3">Detailed Insights</h3>
             <p className="text-muted-foreground">
               Comprehensive reports with actionable feedback to improve your interview skills.
