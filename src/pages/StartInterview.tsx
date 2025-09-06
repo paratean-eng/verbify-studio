@@ -120,7 +120,9 @@ const StartInterview = () => {
   const submitAnswer = async (audioVideoBlob: Blob) => {
     try {
       const formData = new FormData();
-      formData.append("audio_video", audioVideoBlob, "answer.webm");
+      // Send the same webm file as both audio and video since webm contains both streams
+      formData.append("audio", audioVideoBlob, "answer.wav");
+      formData.append("video", audioVideoBlob, "answer.mp4");
 
       const response = await fetch("http://localhost:8000/submit_answer", {
         method: "POST",
